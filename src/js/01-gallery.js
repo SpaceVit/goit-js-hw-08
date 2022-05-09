@@ -1,8 +1,6 @@
+import { galleryItems } from './gallery-items';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-// Add imports above this line
-import { galleryItems } from './gallery-items';
-// Change code below this line
 
 console.log(galleryItems);
 
@@ -17,7 +15,6 @@ function makeGalleryItems(items) {
           <img
             class="gallery__image"
             src='${preview}'
-            data-source='${original}'
             alt='${description}'
           />
         </a>
@@ -28,17 +25,7 @@ function makeGalleryItems(items) {
 
 galleryContainerEl.innerHTML = galleryItemsList;
 
-galleryContainerEl.addEventListener('click', openModal);
-
-function openModal(event) {
-  event.preventDefault();
-
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-}
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
