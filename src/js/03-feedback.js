@@ -10,12 +10,11 @@ formEl.addEventListener('submit', actionsOnSubmit);
 
 getDataFromStorage();
 
-const userData = { email: inputEl.value, message: textareaEl.value };
-
 function setDataToStorage(evt) {
-  userData[evt.target.name] = evt.target.value;
+  const email = formEl.elements.email.value;
+  const message = formEl.elements.message.value;
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, message }));
 }
 
 function actionsOnSubmit(evt) {
@@ -33,8 +32,8 @@ function getDataFromStorage() {
   const parsedData = JSON.parse(dataFromStorage);
 
   if (dataFromStorage) {
-    inputEl.value = parsedData.email;
-    textareaEl.value = parsedData.message;
+    inputEl.value = parsedData.email || '';
+    textareaEl.value = parsedData.message || '';
   }
 }
 // 1.отслеживаем весь текст и записываем в локалсторидж в виде обьекта при помощи стрингифай;
