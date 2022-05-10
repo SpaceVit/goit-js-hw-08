@@ -4,12 +4,13 @@ const formEl = document.querySelector('form');
 const inputEl = document.querySelector("input[name = 'email']");
 const textareaEl = document.querySelector("textarea[name = 'message']");
 const STORAGE_KEY = 'feedback-form-state';
-const userData = { email: inputEl.value, message: textareaEl.value };
 
 formEl.addEventListener('input', throttle(setDataToStorage, 500));
 formEl.addEventListener('submit', actionsOnSubmit);
 
 getDataFromStorage();
+
+const userData = { email: inputEl.value, message: textareaEl.value };
 
 function setDataToStorage(evt) {
   userData[evt.target.name] = evt.target.value;
