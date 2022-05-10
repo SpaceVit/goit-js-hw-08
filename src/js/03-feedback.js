@@ -4,7 +4,7 @@ const formEl = document.querySelector('form');
 const inputEl = document.querySelector("input[name = 'email']");
 const textareaEl = document.querySelector("textarea[name = 'message']");
 const STORAGE_KEY = 'feedback-form-state';
-const userData = {};
+const userData = { email: inputEl.value, message: textareaEl.value };
 
 formEl.addEventListener('input', throttle(setDataToStorage, 500));
 formEl.addEventListener('submit', actionsOnSubmit);
@@ -25,7 +25,6 @@ function actionsOnSubmit(evt) {
   }
   evt.target.reset();
   localStorage.removeItem(STORAGE_KEY);
-  return alert('Thank you for your feedback, my dear friend');
 }
 
 function getDataFromStorage() {
